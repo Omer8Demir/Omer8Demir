@@ -2,42 +2,42 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>VisionPanel | Küresel Haberler & Analiz</title>
+    <title>VisionPanel | Global Dashboard</title>
     <style>
-        body { font-family: sans-serif; background: #050505; color: #fff; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 1200px; }
-        .box { background: #1a1a1a; padding: 15px; border-radius: 10px; border: 1px solid #333; }
-        iframe { width: 100%; height: 300px; border-radius: 10px; }
-        h2 { color: #00d4ff; margin-top: 0; }
-        .data-point { font-size: 1.2em; margin: 10px 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #050505; color: #fff; display: flex; flex-direction: column; align-items: center; padding: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; width: 100%; max-width: 1400px; }
+        .box { background: #1a1a1a; padding: 15px; border-radius: 10px; border: 1px solid #333; min-height: 200px; }
+        .ad-box { background: #000; border: 2px dashed #444; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
-    <h1>VisionPanel - Global Command Center</h1>
+    <h1>VisionPanel - Global Dashboard</h1>
+    
     <div class="grid">
-        <div class="box">
-            <h2>Canlı Yayın</h2>
-            <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="box">
-            <h2>Kripto & Piyasa</h2>
-            <div class="data-point">BTC: <strong>$68,450</strong></div>
-            <div class="data-point">ETH: <strong>$3,780</strong></div>
-            <div class="data-point">Altın: <strong>$2,350</strong></div>
-        </div>
-        <div class="box">
-            <h2>Hava Durumu & Özel Günler</h2>
-            <p>Bugün: 28 Mayıs 2026</p>
-            <p>Hava: İstanbul, 21°C - Parçalı Bulutlu</p>
-            <p style="color: #ffaa00;">Özel Gün: Dünya Oyun Oynama Günü</p>
-        </div>
-        <div class="box">
-            <h2>Dünyadan Haberler</h2>
-            <ul>
-                <li>Küresel piyasalarda teknoloji hisseleri yükselişte.</li>
-                <li>Yeni enerji projeleri için onaylar alındı.</li>
-            </ul>
-        </div>
+        <div class="box"><h2>Canlı Yayın</h2><iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" width="100%" height="200" frameborder="0" allowfullscreen></iframe></div>
+
+        <div class="box"><h2>Dünya Hava Durumu</h2><div id="weather">Yükleniyor...</div></div>
+
+        <div class="box"><h2>Canlı Saatler</h2><div id="clock"></div></div>
+
+        <div class="box ad-box"><h2>Reklam Alanı</h2></div>
     </div>
+
+    <script>
+        // 1. Saatler
+        function updateClock() {
+            document.getElementById('clock').innerHTML = new Date().toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+
+        // 2. Hava Durumu Döngüsü (Örnek Şehirler)
+        const cities = ["İstanbul: 21°C", "New York: 18°C", "Tokyo: 24°C", "Londra: 15°C"];
+        let i = 0;
+        function updateWeather() {
+            document.getElementById('weather').innerText = cities[i];
+            i = (i + 1) % cities.length;
+        }
+        setInterval(updateWeather, 5000);
+    </script>
 </body>
 </html>
