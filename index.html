@@ -1,26 +1,45 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Global Monitoring Hub</title>
+    <title>Global Vision Financial Panel</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .search-box { width: 100%; max-width: 600px; padding: 15px; border-radius: 10px; border: 1px solid #444; background: #111; color: #00d4ff; font-size: 1.2em; text-align: center; margin-bottom: 30px; border: 2px solid #00d4ff; }
-        .results { width: 100%; max-width: 1200px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-        .card { background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { border-color: #00d4ff; }
-        h3 { margin: 0 0 5px 0; color: #00d4ff; font-size: 1em; }
-        .time { font-size: 1.2em; font-weight: bold; }
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        
+        /* Üst Bilgi Paneli */
+        #header-panel { background: #111; padding: 15px; border-bottom: 2px solid #00d4ff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .ticker-item { color: #00d4ff; font-weight: bold; font-size: 0.9em; }
+        .support-btn { background: #ff5e00; color: white; padding: 8px 16px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 0.9em; }
+        
+        .container { padding: 20px; }
+        .search-box { width: 100%; max-width: 600px; padding: 15px; border-radius: 10px; border: 2px solid #00d4ff; background: #111; color: #fff; font-size: 1.2em; display: block; margin: 20px auto; text-align: center; }
+        .results { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+        .card { background: #111; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        h3 { color: #00d4ff; margin-top: 0; }
     </style>
 </head>
 <body>
 
-    <h1>Global Monitoring Hub</h1>
-    <input type="text" class="search-box" id="arama" placeholder="Search country (e.g. Turkey, Brazil, Japan...)" oninput="filtrele()">
-    <div class="results" id="liste"></div>
+    <!-- Üst Bilgi Paneli -->
+    <div id="header-panel">
+        <div style="display: flex; gap: 20px;">
+            <span class="ticker-item">USD/TRY: 33.45</span>
+            <span class="ticker-item">BTC/USD: 68,200</span>
+        </div>
+        <a href="https://donate.bynogame.com/supportvisionpanel" target="_blank" class="support-btn">
+            Support Project
+        </a>
+    </div>
+
+    <div class="container">
+        <input type="text" class="search-box" id="arama" placeholder="Search country..." oninput="updatePanel()">
+        <div class="results" id="liste"></div>
+    </div>
 
     <script>
         const countries = [
+            
             { name: 'Afghanistan', zone: 'Asia/Kabul' }, { name: 'Germany', zone: 'Europe/Berlin' },
             { name: 'USA', zone: 'America/New_York' }, { name: 'American Samoa', zone: 'Pacific/Pago_Pago' },
             { name: 'Andorra', zone: 'Europe/Andorra' }, { name: 'Angola', zone: 'Africa/Luanda' },
@@ -117,7 +136,7 @@
             { name: 'Zimbabwe', zone: 'Africa/Harare' }
         ];
 
-        function filtrele() {
+        function updatePanel() {
             const aranan = document.getElementById('arama').value.toLowerCase();
             const liste = document.getElementById('liste');
             liste.innerHTML = '';
@@ -125,13 +144,14 @@
             countries.filter(c => c.name.toLowerCase().includes(aranan)).forEach(c => {
                 const div = document.createElement('div');
                 div.className = 'card';
-                div.innerHTML = `<h3>${c.name}</h3><div class="time">${new Date().toLocaleTimeString('en-US', {timeZone: c.zone})}</div>`;
+                div.innerHTML = `<h3>${c.name}</h3><p>Time: ${new Date().toLocaleTimeString('en-US', {timeZone: c.zone})}</p>`;
                 liste.appendChild(div);
             });
         }
         
-        setInterval(filtrele, 1000);
-        filtrele();
+        setInterval(updatePanel, 1000);
+        updatePanel();
     </script>
 </body>
+</html>
 </html>
