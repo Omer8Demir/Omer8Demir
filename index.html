@@ -2,56 +2,43 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>VisionPanel | Premium Terminal</title>
+    <title>VISIONPANEL | Command Center</title>
     <style>
-        body { margin: 0; background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); color: #fff; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; }
-        
-        .hero { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
-        .clock-box { font-size: 2.5em; font-weight: bold; text-shadow: 0 0 20px rgba(0,212,255,0.5); }
-        
-        .nav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 90%; max-width: 1000px; }
-        .btn { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 20px; color: #fff; text-align: center; text-decoration: none; border-radius: 12px; transition: 0.4s; }
-        .btn:hover { background: #00d4ff; box-shadow: 0 0 20px #00d4ff; border-color: #fff; }
-
-        .ticker-bar { height: 70px; background: rgba(200, 0, 0, 0.9); display: flex; align-items: center; border-top: 3px solid #fff; overflow: hidden; font-size: 1.4em; font-weight: bold; }
-        #ticker { animation: move 20s linear infinite; }
-        @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        body { margin: 0; background: #050505; color: #00f2ff; font-family: 'Orbitron', sans-serif; overflow: hidden; }
+        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, #111 0%, #000 100%); }
+        .data-glitch { font-size: 4em; text-shadow: 0 0 15px #00f2ff; margin-bottom: 20px; }
+        .nav-hub { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 80%; max-width: 900px; }
+        .portal { border: 2px solid #00f2ff; padding: 30px; text-align: center; cursor: pointer; transition: 0.5s; background: rgba(0,242,255,0.05); }
+        .portal:hover { transform: scale(1.1); background: #00f2ff; color: #000; box-shadow: 0 0 40px #00f2ff; }
+        .footer-ticker { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid #00f2ff; padding: 15px 0; font-size: 1.2em; white-space: nowrap; }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <div class="clock-box" id="saatler">Yükleniyor...</div>
-        <div class="nav-grid">
-            <a href="https://x.com" class="btn">X (Twitter)</a>
-            <a href="https://instagram.com" class="btn">Instagram</a>
-            <a href="https://telegram.org" class="btn">Telegram</a>
-            <a href="https://binance.com" class="btn">CEX (Binance)</a>
-            <a href="https://uniswap.org" class="btn">DEX (Uniswap)</a>
-        </div>
+<div class="hero">
+    <div class="data-glitch">VISION PANEL</div>
+    <div class="nav-hub">
+        <a href="https://binance.com" class="portal">BORSALAR (CEX)</a>
+        <a href="https://uniswap.org" class="portal">MERKEZİSİZ (DEX)</a>
+        <a href="https://x.com" class="portal">SOSYAL AĞ (X)</a>
+        <a href="https://tradingview.com" class="portal">ANALİZ</a>
+        <a href="https://coingecko.com" class="portal">PİYASA</a>
+        <a href="https://www.youtube.com" class="portal">CANLI YAYIN</a>
     </div>
+</div>
 
-    <div class="ticker-bar">
-        <div id="ticker"></div>
-    </div>
+<div class="footer-ticker" id="ticker">YÜKLENİYOR...</div>
 
-    <script>
-        function updateTime() {
-            document.getElementById('saatler').innerHTML = 
-                `İstanbul: ${new Date().toLocaleTimeString('tr-TR', {timeZone: 'Europe/Istanbul'})}<br>` +
-                `New York: ${new Date().toLocaleTimeString('tr-TR', {timeZone: 'America/New_York'})}<br>` +
-                `Tokyo: ${new Date().toLocaleTimeString('tr-TR', {timeZone: 'Asia/Tokyo'})}`;
-        }
-        setInterval(updateTime, 1000);
-
-        async function fetchCrypto() {
-            const res = await fetch('https://api.binance.com/api/v3/ticker/price');
-            const data = await res.json();
-            const filter = data.filter(i => ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'SOLUSDT', 'XRPUSDT'].includes(i.symbol));
-            document.getElementById('ticker').innerText = filter.map(i => `${i.symbol.replace('USDT','')}: $${parseFloat(i.price).toFixed(2)}`).join(' | ');
-        }
-        setInterval(fetchCrypto, 3000);
-        fetchCrypto();
-    </script>
+<script>
+    async function updateData() {
+        const res = await fetch('https://api.binance.com/api/v3/ticker/price');
+        const data = await res.json();
+        const top = data.slice(0, 8);
+        document.getElementById('ticker').innerHTML = top.map(i => `${i.symbol}: $${parseFloat(i.price).toFixed(2)}`).join(' • ');
+    }
+    setInterval(updateData, 2000);
+    updateData();
+</script>
 </body>
 </html>
