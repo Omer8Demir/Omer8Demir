@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VisionPanel: Global market data and live streams.">
-    <title>VisionPanel | Global Markets</title>
+    <title>VisionPanel | Küresel Haberler & Analiz</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #0f0f0f; color: #ffffff; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        .main-container { width: 100%; max-width: 1000px; }
-        .stream-box { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
-        .data-panel { padding: 20px; background: #1a1a1a; border-radius: 10px; text-align: center; color: #00d4ff; }
+        body { font-family: sans-serif; background: #050505; color: #fff; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 1200px; }
+        .box { background: #1a1a1a; padding: 15px; border-radius: 10px; border: 1px solid #333; }
+        iframe { width: 100%; height: 300px; border-radius: 10px; }
+        h2 { color: #00d4ff; margin-top: 0; }
+        .data-point { font-size: 1.2em; margin: 10px 0; }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="stream-box">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/b_h1tP0i65k" frameborder="0" allowfullscreen></iframe>
+    <h1>VisionPanel - Global Command Center</h1>
+    <div class="grid">
+        <div class="box">
+            <h2>Canlı Yayın</h2>
+            <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="data-panel">
-            <h2>Market Pulse (Global)</h2>
-            <div id="market-data" style="font-size: 1.2em; color: #00ff00;">
-                Gold: <strong>$2,350</strong> | S&P 500: <strong>5,280</strong> | USD/TRY: <strong>32.25</strong>
-            </div>
+        <div class="box">
+            <h2>Kripto & Piyasa</h2>
+            <div class="data-point">BTC: <strong>$68,450</strong></div>
+            <div class="data-point">ETH: <strong>$3,780</strong></div>
+            <div class="data-point">Altın: <strong>$2,350</strong></div>
+        </div>
+        <div class="box">
+            <h2>Hava Durumu & Özel Günler</h2>
+            <p>Bugün: 28 Mayıs 2026</p>
+            <p>Hava: İstanbul, 21°C - Parçalı Bulutlu</p>
+            <p style="color: #ffaa00;">Özel Gün: Dünya Oyun Oynama Günü</p>
+        </div>
+        <div class="box">
+            <h2>Dünyadan Haberler</h2>
+            <ul>
+                <li>Küresel piyasalarda teknoloji hisseleri yükselişte.</li>
+                <li>Yeni enerji projeleri için onaylar alındı.</li>
+            </ul>
         </div>
     </div>
 </body>
