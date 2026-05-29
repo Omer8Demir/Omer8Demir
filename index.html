@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Global Veri Terminali</title>
-        <style>
+    <style>
         body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; }
         .search-box { width: 100%; max-width: 600px; padding: 15px; border-radius: 10px; border: 2px solid #00d4ff; background: #111; color: #fff; font-size: 1.2em; display: block; margin: 20px auto; text-align: center; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
@@ -11,15 +11,9 @@
         h3 { color: #00d4ff; margin: 0; }
         .data { font-size: 0.85em; color: #ccc; margin: 2px 0; }
         
-      <!-- Minimalist Bağış Alanı -->
-<div style="text-align: center; margin: 10px auto; padding: 5px; max-width: 300px; border: 1px solid #333; border-radius: 8px;">
-    <p style="color: #888; font-size: 0.6em; margin: 0 0 5px 0;">Non-profit data terminal for stray animals.</p>
-    <a href="https://nowpayments.io/donation?api_key=b7e0cf29-c2e0-48da-8a6e-225bf1b5fdcd" 
-       target="_blank" 
-       style="color: #00d4ff; font-size: 0.7em; text-decoration: underline;">
-       Destek Ol (Bağış Yap)
-    </a>
-</div>
+        /* Bağış kutusu düzenlemesi */
+        .donation-container { text-align: center; margin: 20px auto; padding: 20px; background: #111; border: 1px solid #00d4ff; border-radius: 10px; max-width: 800px; }
+        .donation-text { color: #00d4ff; margin-bottom: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
